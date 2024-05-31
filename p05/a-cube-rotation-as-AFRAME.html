@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+	<script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+	<script>
+	</script>
+   </head>
+  <body>
+<body>
+    <script>
+	AFRAME.registerComponent('my-box', {
+		  schema: {
+			width: {type: 'number', default: 1},
+			height: {type: 'number', default: 1},
+			depth: {type: 'number', default: 1},
+			color: {type: 'color', default: '#AAA'}
+		  },
+
+		  /**
+		   * Initial creation and setting of the mesh.
+		   */
+		  init: function () {
+			console.log("INIT");
+			this.currentPosition = this.el.object3D.position;
+			this.vec = new THREE.Vector3();
+			this.vec['x'] = 1;
+			this.vec['y'] = 1;
+			this.vec['z'] = 1;
+			
+			this.my_var = 0;
+			
+			var data = this.data;
+			var el = this.el;
+			
+			// Create geometry.
+			this.geometry = new THREE.BoxGeometry(data.width, data.height, data.depth);
+			
+			this.el.setAttribute('position', {
+				  x: 0,
+				  y: 2.0,
+				  z: -5
+				});
+				
+			this.el.setAttribute('rotation', {
+				  x: 45,
+				  y: 45,
+				  z: 45
+			});
+
+			// Create material.
+			this.material = new THREE.MeshStandardMaterial({color: data.color});
+
+			// Create mesh.
+			this.mesh = new THREE.Mesh(this.geometry, this.material);
+
+			// Set mesh on entity.
+			el.setObject3D('mesh', this.mesh);
+			
+			el.setAttribute('rotation', {
+					  x: this.el.object3D.rotation.x ,
+					  y: this.el.object3D.rotation.y ,
+					  z: this.el.object3D.rotation.z 
+				});
+		  },
+		  
+		  tick: function() {
+			console.log("tick");
+			
+			this.my_var = this.my_var + 1;
+			if (0 == (this.my_var % 50)) {
+				console.log("x = " + this.el.object3D.rotation.x);
+				this.my_var = 0;
+			
+				this.el.object3D.rotation.x = this.el.object3D.rotation.x + 0.333*Math.PI;
+				//this.el.object3D.rotateX();
+				//this.el.object3D.rotation.x = (this.el.object3D.rotation.x + 0.01) ;
+				//this.el.object3D.rotation.y = (this.el.object3D.rotation.y + 0.001) ;
+			}
+		  
+        }
+		});
+    </script>
+    <a-scene>   
+	 <a-entity my-box></a-entity> 
+      </a-scene>
+  </body>
+</html>

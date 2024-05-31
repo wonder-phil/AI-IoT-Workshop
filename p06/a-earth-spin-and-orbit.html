@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Orbiting and Spinning Sphere in A-Frame</title>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+  </head>
+  <body>
+  <!-- material="color: red" -->
+    <a-scene>
+	  <a-assets>
+		<img id="earth" src="./IMAGES/1_earth_8k.jpg">
+		<img id="fluid" src="./IMAGES/waternormals.jpg">
+	  </a-assets>
+      <!-- Spinning Sphere -->
+      <a-sphere id="sphere" geometry="primitive: sphere" src="#earth" position="2 1.5 -5" 
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 4000"></a-sphere>
+      
+      <!-- Camera and Lighting -->
+      <a-camera position="0 1.6 0"></a-camera>
+      <a-light type="ambient" color="#888"></a-light>
+      <a-light type="directional" color="#fff" position="-1 1 1"></a-light>
+      
+      <!-- Custom Script for Orbit -->
+      <script>
+        AFRAME.registerComponent('orbit', {
+          schema: {
+            radius: {type: 'number', default: 2},
+            speed: {type: 'number', default: 0.01}
+          },
+          init: function () {
+            this.angle = 0;
+          },
+          tick: function (time, timeDelta) {
+            this.angle += this.data.speed * (timeDelta / 1000);
+            this.el.object3D.position.x = this.data.radius * Math.cos(this.angle);
+            this.el.object3D.position.z = this.data.radius * Math.sin(this.angle) - 5;
+          }
+        });
+        
+        document.querySelector('#sphere').setAttribute('orbit', 'radius: 3; speed: 1');
+      </script>
+    </a-scene>
+  </body>
+</html>

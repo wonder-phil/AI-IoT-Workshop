@@ -1,0 +1,26 @@
+
+<html>
+  <head>
+  </head>
+  <body>
+	<script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+	<script>
+	  AFRAME.registerComponent("foo", {
+		init: function() {
+		  this.el.addEventListener("click", e => {
+			// reset position
+			this.el.setAttribute("position", "0 2 -4")
+			// sync
+			this.el.components["dynamic-body"].syncToPhysics();
+		  })
+		}
+	  })
+	</script>
+	<a-scene physics cursor="rayOrigin: mouse">
+	  <a-sphere position="0 5 -5" radius="0.5" color="#EF2D5E" dynamic-body foo></a-sphere>
+	  <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" static-body></a-plane>
+	  <a-sky color="#ECECEC"></a-sky>
+	</a-scene>
+ </body>
+</html>

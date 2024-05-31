@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Color Animation in A-Frame</title>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- A simple box with color animation -->
+      <a-box position="0 1.6 -3" rotation="0 45 0" color="#4CC3D9"
+             animation="property: material.color; to: #FFC65D; dur: 2000; dir: alternate; loop: true">
+      </a-box>
+
+      <!-- A sphere with color animation -->
+      <a-sphere position="-2 1.25 -5" radius="1.25" color="#EF2D5E"
+                animation="property: material.color; to: #4CC3D9; dur: 3000; dir: alternate; loop: true">
+      </a-sphere>
+
+      <!-- A cylinder with color animation -->
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"
+                  animation="property: material.color; to: #EF2D5E; dur: 2500; dir: alternate; loop: true">
+      </a-cylinder>
+
+      <!-- A plane with color animation -->
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"
+               animation="property: material.color; to: #FFD700; dur: 2000; dir: alternate; loop: true">
+      </a-plane>
+      
+      <!-- Camera and light -->
+      <a-camera position="0 1.6 0"></a-camera>
+      <a-light type="ambient" color="#FFFFFF"></a-light>
+    </a-scene>
+  </body>
+</html>

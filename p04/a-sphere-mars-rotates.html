@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script> 
+  </head>
+  <body>
+	<!-- <script src="js/aframe.io_releases_1.4.1_aframe.min.js"></script> -->
+    <a-scene>
+		<a-assets>
+			<img id="mars" src="./IMAGES/mars-surface.avif" crossorigin="anonymous">
+		</a-assets>
+		<a-entity position="0 0 -5" rotation="0 0 0" 
+			animation="property: rotation; to: 0 360 0; loop: true; ">
+		<a-sphere  id="PGB circle" position="0 2 -1.5" src="#mars" rotation="0 0 0" ></a-sphere>
+		</a-entity>
+    </a-scene>
+  </body>
+</html>

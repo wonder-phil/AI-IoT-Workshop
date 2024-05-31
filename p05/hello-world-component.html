@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+	<script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+	<script>
+	</script>
+   </head>
+  <body>
+<body>
+    <script>
+    AFRAME.registerComponent('say-hello', {
+        init: function() {
+          console.log("HELLO");
+        },
+        tick: function() {
+          console.log("click");
+        } });
+    </script>
+    <a-scene>   
+	 <a-entity say-hello></a-entity> 
+    </a-scene>
+  </body>
+</html>

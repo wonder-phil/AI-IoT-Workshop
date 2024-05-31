@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+	<script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+	<script>
+	</script>
+   </head>
+  <body>
+  <script src="./simple-component.js"></script> 
+  <a-camera><a-cursor></a-cursor></a-camera>
+	
+	  <a-scene>
+		
+			<a-box id="one" position="-2 0 -7" color="red" class="clickable" s-comp></a-box>
+			<a-box id="two" position="0 0 -7" color="blue"></a-box>
+			<a-box id="three" position="2 0 -7" color="green"></a-box>
+			<a-entity raycaster="objects: .one" cursor></a-entity>
+			<a-sphere position="1 5 -2" geometry="radius: 0.5" class="clickable" color="blue"></a-sphere>
+		
+	  </a-scene>
+	
+  </body>
+</html>

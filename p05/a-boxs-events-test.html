@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+   </head>
+  <body>
+  
+  	<script>
+	AFRAME.registerComponent('my-color-toggle', {
+		init: function() {
+			console.log("init 1");
+			let el = this.el;
+			let data = this.data;
+			console.log("init 2");
+			
+			this.toggleColor = function() { // adding a method
+				el.setAttribute('color','orange');
+				console.log("toggleColor event");
+				alert("clicked");
+				
+			};
+			
+			this.el.addEventListener('click', this.toggleColor, { passive: true });
+			console.log("init-end");
+		},
+		remove: function() {
+			this.el.removeEventListener('click', this.toggleColor);
+		}
+	});
+	</script>
+  <!-- https://jsfiddle.net/w97t12rp/  -->
+	
+	  <a-scene  cursor="rayOrigin: mouse;" raycaster="objects: .rayclick;">
+		
+			<a-box id="one" position="-2 0 -7" color="red" class="rayclick" my-color-toggle></a-box>
+			<a-box id="two" position="0 0 -7" color="blue"></a-box>
+			<a-box id="three" position="2 0 -7" color="green"></a-box>
+			<a-entity raycaster="objects: .one" cursor></a-entity>
+			<a-sphere position="1 5 -2" geometry="radius: 0.5" class="clickable" color="blue"></a-sphere>
+		
+	  </a-scene>
+	
+  </body>
+</html>

@@ -1,0 +1,37 @@
+
+<html>
+  <head>
+    <!-- <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script> -->
+  </head>
+  <body>
+	<script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+	<script>
+	  AFRAME.registerComponent("falling-object", {
+		init: function() {
+		  this.el.addEventListener("click", e => {
+			// reset position
+			this.el.setAttribute("position", "0 2 -4")
+			// sync
+			this.el.components["dynamic-body"].syncToPhysics();
+		  })
+		}
+	  });
+	  document.getElementById("spaceShip").setAttribute("animation-mixer", "clip:swimming");
+	const timedelay = setTimeout(delayFunction, 2000);
+    function delayFunction() {
+      document.getElementById("spaceShip").setAttribute("animation-mixer", "clip:bite");
+    }
+	</script>
+	<a-scene physics cursor="rayOrigin: mouse">
+	<a-entity id="spaceShip"
+      gltf-model="./IMAGES/SpaceShip.glb"
+      position="0.5 5 -5" scale="2 2 2" 
+	  animation="property: position; to: 0 0 -4; dur: 20000; easing: easeInOutQuad; loop: false"></a-box>
+	  
+	  ></a-entity>
+	  <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" src="./IMAGES/mars-surface.avif" static-body></a-plane>
+	  <a-sky color="#ECECEC"></a-sky>
+	</a-scene>
+ </body>
+</html>
